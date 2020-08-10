@@ -24,6 +24,16 @@
                     <li>@Html.ActionLink("主页", "Index", "Home")</li>
                     <li>@Html.ActionLink("关于", "About", "Home")</li>
                     <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
+                    
+                    @{ 
+                        if (@Session["auth"] != null && (Boolean)@Session["auth"] != true) {
+                            <li>@Html.ActionLink("登录", "Login", "Home")</li>                    
+                        }
+                        else {
+                            <li>@Html.ActionLink("Hello "+ @Session["user_email"], "Details/" + @Session["user_id"], "Account")</li>
+                        }
+                    }
+                    <li>@Html.ActionLink("注册", "Create", "Account")</li>
                 </ul>
             </div>
         </div>
